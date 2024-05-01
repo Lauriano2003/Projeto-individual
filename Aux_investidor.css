@@ -1,0 +1,159 @@
+
+body{
+
+   margin: 0;
+   padding: 0;
+   font-family: Arial;
+   background-image:linear-gradient(to right,#000000,#737373)
+   
+   
+}
+
+.container {
+   width: 80%;
+   margin: auto;
+   display: flex;
+   color: rgb(255, 255, 255);
+   
+ }
+ 
+ .header {
+   border-bottom: 3px solid #f9f9f9;
+ }
+
+ .titulo{
+   font-weight: 500px;
+ }
+ .navbar{
+   width: 400px;
+   display: flex;
+   justify-content: space-between;
+   list-style:  none;
+   align-items: center;
+ }
+
+.header .container{
+   justify-content: space-between;
+}
+
+.banner{
+   background-image : url("Design sem nome (2).png");
+   margin-left: 10%;
+   width: 80%;
+   height: 790px;
+   display: flex;
+   align-items: center;
+   border-bottom: 3px solid #f9f9f9;
+}
+.titulo_body{
+   margin-top: 100px;
+   width: 800px;
+   color: rgb(250, 250, 250);
+   font-weight: bold;
+   font-size: 30px;
+}
+.text1{
+   margin-left: 220px;
+   margin-top: 300px;
+   width:  900px;
+   display:flex ;
+   justify-content: space-between;
+   align-items: center;
+   font-style: arial;
+   /* border: 1px solid black; */
+   padding: 10px;
+}
+.titulo_body .text1{
+   justify-content: space-between;
+}
+
+.banner2{
+   margin-left: 10%;
+   width: 80%;
+   height: 900px;
+   display: flex;
+   align-items: center;
+   border-bottom: 3px solid #f9f9f9; 
+}
+.titulo_body2{
+   margin-left: 100px;
+   margin-top: 60px;
+   width: 800px;
+   color: rgb(250, 250, 250);
+   font-weight: bold;
+   font-size: 45px;
+}
+
+.text2{
+   margin-top: 30px;
+   margin-left: -250px;
+   margin-right: 30px;
+   width:  80%;
+   display:flex ;
+   justify-content: space-between;
+   align-items: center;
+   font-style: arial;
+   padding: 10px;
+}
+.text2_1{
+   width:  80%;
+   display:flex ;
+   justify-content: space-between;
+   align-items: center;
+   font-style: arial;
+   padding: 10px;
+}
+
+.banner3{
+   margin-left: 10%;
+   width: 80%;
+   height: 1000px;
+   display: flex;
+   align-items: center;
+   
+}
+
+.titulo_body3{
+   margin-left: 100px;
+   margin-top: 80px;
+   width: 800px;
+   color: rgb(250, 250, 250);
+   font-weight: bold;
+   font-size: 45px;
+}
+
+.text3{
+   margin-top: -230px;
+   margin-left: -320px;
+   width:  100%;
+   display:flex ;
+   justify-content: space-between;
+   align-items: center;
+   font-style: arial;
+   padding: 10px;
+}
+.text3_1{
+   width:  80%;
+   display:flex ;
+   justify-content: space-between;
+   align-items: center;
+   font-style: arial;
+   padding: 10px;
+}
+
+/* .lembrete{
+   border-bottom: 3px solid #f9f9f9;
+} */
+
+.rodape{
+   border-top: 3px solid #f9f9f9;
+   color: aliceblue;
+   width: 100%;
+   height: 100px;
+   text-align: center;
+}
+.rodapeText{
+   margin-top: 40px;
+   color: aliceblue;
+   text-align: center;
+}
