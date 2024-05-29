@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="..\css\formulario.css">
+</head>
+<body>
+    <div class="container">
+        <div class="titulo_questionario">
+            <h1>Questionario</h1>
+        </div>
+        <div class="perguntas_questionario">
+        <ol>
+            <li>Qual a sua renda mensal média? <br> <input type="text" name="renda" id="renda"></li><br>
+
+            <li>Qual o valor médio do seu gasto mensal de contas fixas? <br> <input type="number" name="gasto" id="gasto"></li><br>
+
+            <li>Qual o valor médio do seu gasto mensal de Desejos/Divertimento? <br> <input type="number" name="divertimento" id="divertimento"></li><br>
+
+            <li>Já é um investidor no mercado financeiro? <br> <select name="investidor_financeiro" id="investidor_financeiro"><option value="sim">Sim</option> <option value="nao">Não</option></select> </li><br>
+
+            <li>Investe um valor regular todo mês ? <br> <select name="investidor_financeiro" id="investidor_financeiro"><option value="sim">Sim</option> <option value="nao">Não</option></li></select> <br>
+
+            <br><li>Caso tenha respondido Sim nas duas ultimas perguntas, qual o valor que investe por mês? <br> <input type="number" name="valor_investido" id="valor_investido"></li><br>
+
+            <li>Possui Reserva de Emergência? <br> <select name="reserva_emergencia" id="reserva_emergencia"><option value="sim">Sim</option> <option value="nao">Não</option></select> </li><br>
+            
+            <li>Caso tenha respondido Sim na ultima pergunta, qual o valor que tem de reserva? <br> <input type="number" name="valor_reserva" id="valor_reserva"></li><br>
+
+            <li>Você possui algum objetivo de compra ou financeiro? <br> <select name="objetivo" id="objetivo"><option value="sim">Sim</option> <option value="nao">Não</option></li></select> <br>
+
+
+            <br><li>Caso tenha respondido Sim na ultima pergunta, qual o valor necessário para esse objetivo? <br> <input type="number" name="valor_objetivo" id="valor_objetivo"></li><br>
+
+        </ol>
+        <a href="http://localhost:3333/dashboard/cards.html"><div class="botao_formulario"><button onclick="Redirecionar_à_Dash()">Enviar</button></div></a>
+    </div>
+</div>
+</body>
+</html>

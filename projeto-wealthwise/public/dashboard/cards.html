@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="icon" href="../assets/38054008-abec-48da-a0ab-8fe07058ff22.jpeg"> type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealthwise | Tempo Real</title>
+
+
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <link rel="stylesheet" href="./../css/estilo.css" />
+
+    <script src="../js/sessao.js"></script>
+    <script src="../js/alerta.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body onload="validarSessao(), exibirAquarios(),  atualizacaoPeriodica()">
+
+    <div class="janela">
+
+        <div class="header-left dash-header">
+
+            <h1>Wealthwise</h1>
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+
+            <div class="btn-nav">
+                <h3>Contas</h3>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./dashboard.html">
+                    <h3>Gráficos</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./mural.html">
+                    <h3>Forum de investimentos</h3>
+                </a>
+            </div>
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+
+        </div>
+
+        <div class="dash">
+            <div id="alerta">
+            </div>
+            <div class="area-parametros-alerta">
+                <p class="titulo-legenda">
+                    <b>Alertas de contas</b>
+                </p>
+                <div class="parametros-alerta">
+                    <!-- <div class="item-regua perigo-frio">
+                        <p>Perigo</p>
+                        <p>&lt;=5°C</p>
+                    </div>
+                    <div class="item-regua alerta-frio">
+                        <p>Alerta</p>
+                        <p>&lt;=10°C</p>
+                    </div> -->
+                    <div class="item-regua ideal">
+                        <p>Positiva</p>
+                        <p>Atual>=Inicial</p>
+                    </div>
+                    <!-- <div class="item-regua alerta-quente">
+                        <p>Estavel</p>
+                        <p>Atual=Inicial</p>
+                    </div> -->
+                    <div class="item-regua perigo-quente">
+                        <p>Negativo</p>
+                        <p>Inicial>Atual</p>
+                    </div>
+                </div>
+            </div>
+            <h1 class="titulo_Contas">Contas</h1>
+            <div class="cards" id="cardAquarios">
+                <div class="cards_Contas"><h1><b>Geral</b><p class="text_cards" id="cardsText">R$--</p></h1>
+            </div>
+            <div class="cards" id="cardAquarios">
+                <div class="cards_Contas"><h1><b>Divertimento</b><p class="text_cards" id="cardsText">R$--</p></h1>
+                </div>            
+                <div class="cards_Contas"><h1><b>Despesas Basicas</b><p class="text_cards" id="cardsText">R$--</p></h1></div>
+            </div>
+            <div class="cards" id="cardAquarios">
+                <div class="cards_Contas"><h1><b>Investimentos</b><p class="text_cards" id="cardsText">R$--</p></h1></div>            
+                <div class="cards_Contas"><h1><b>Reserva</b><p class="text_cards" id="cardsText">R$--</p></h1></div>
+            </div>
+            <div class="cards" id="cardAquarios">
+                <div class="cards_Contas"><h1><b>Objetivo</b><p class="text_cards" id="cardsText">R$--</p></h1></div>
+            </div>
+            </div>
+           
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+
+    function exibirAquarios() {
+        JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
+            document.getElementById("cardAquarios").innerHTML += `
+                    <div class="card-aquario">
+                        <div class="title-aquario">
+                            <h1>${item.descricao}</h1>
+                        </div>
+                        <div class="desc-aquario">
+                        <div class="temperatura">
+                            <p id="temp_aquario_${item.id}">-°C</p>
+                        </div>
+                        <div class="cor-alerta" id="card_${item.id}"></div>
+                    </div>
+                    </div>
+                    `
+        });
+    }
+
+    
+</script>
+
+</html>
