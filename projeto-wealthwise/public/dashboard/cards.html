@@ -86,19 +86,19 @@
             </div>
             <h1 class="titulo_Contas">Contas</h1>
             <div class="cards" id="cardAquarios">
-                <div class="cards_Contas"><h1><b>Geral</b><p class="text_cards" id="cardsText">R$--</p></h1>
+                <div class="cards_Contas"><h1><b>Geral</b><p class="text_cards" id="cardsText">Saldo: R$--</p>
+                <p class="text_cards" id="cardsText">Total Investido: R$--</p>
+                <p class="text_cards" id="cardsText">Total Reservado: R$--</p></h1>
             </div>
             <div class="cards" id="cardAquarios">
-                <div class="cards_Contas"><h1><b>Divertimento</b><p class="text_cards" id="cardsText">R$--</p></h1>
+                <div class="cards_Contas"><h1><b>Valor Divertimento</b><p class="text_cards" id="cardsText">R$--</p></h1>
                 </div>            
-                <div class="cards_Contas"><h1><b>Despesas Basicas</b><p class="text_cards" id="cardsText">R$--</p></h1></div>
+                <div class="cards_Contas"><h1><b>Valor Despesas Basicas</b><p class="text_cards" id="cardsText">R$--</p></h1></div>
             </div>
+            Receita Total
             <div class="cards" id="cardAquarios">
-                <div class="cards_Contas"><h1><b>Investimentos</b><p class="text_cards" id="cardsText">R$--</p></h1></div>            
-                <div class="cards_Contas"><h1><b>Reserva</b><p class="text_cards" id="cardsText">R$--</p></h1></div>
-            </div>
-            <div class="cards" id="cardAquarios">
-                <div class="cards_Contas"><h1><b>Objetivo</b><p class="text_cards" id="cardsText">R$--</p></h1></div>
+                <div class="cards_Contas"><h1><b>Valor Investimentos mensais</b><p class="text_cards" id="cardsText">R$--</p></h1></div>            
+                <div class="cards_Contas"><h1><b>Valor Reservado mensal</b><p class="text_cards" id="cardsText">R$--</p></h1></div>
             </div>
             </div>
            
@@ -110,25 +110,45 @@
 
 <script>
 
-    function exibirAquarios() {
-        JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
-            document.getElementById("cardAquarios").innerHTML += `
-                    <div class="card-aquario">
-                        <div class="title-aquario">
-                            <h1>${item.descricao}</h1>
-                        </div>
-                        <div class="desc-aquario">
-                        <div class="temperatura">
-                            <p id="temp_aquario_${item.id}">-°C</p>
-                        </div>
-                        <div class="cor-alerta" id="card_${item.id}"></div>
-                    </div>
-                    </div>
-                    `
-        });
-    }
+    // function exibirAquarios() {
+    //     JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
+    //         document.getElementById("cardAquarios").innerHTML += `
+    //                 <div class="card-aquario">
+    //                     <div class="title-aquario">
+    //                         <h1>${item.descricao}</h1>
+    //                     </div>
+    //                     <div class="desc-aquario">
+    //                     <div class="temperatura">
+    //                         <p id="temp_aquario_${item.id}">-°C</p>
+    //                     </div>
+    //                     <div class="cor-alerta" id="card_${item.id}"></div>
+    //                 </div>
+    //                 </div>
+    //                 `
+    //     });
+    // }
 
-    
+
 </script>
 
 </html>
+
+<script>
+    async function fetchKPIs() {
+        try {
+            const response = await fetch('/api/kpis');
+            const data = await response.json();
+
+            document.getElementById('saldo').textContent = `Saldo: R$${data.saldo}`;
+            document.getElementById('totalInvestido').textContent = `Total Investido: R$${data.totalInvestido}`;
+            document.getElementById('totalReservado').textContent = `Total Reservado: R$${data.totalReservado}`;
+            // Atualize os outros KPIs aqui
+        } catch (error) {
+            console.error('Erro ao buscar KPIs:', error);
+        }
+    }
+
+    function exibirKPIs() {
+        fetchKPIs();
+    }
+</script>
