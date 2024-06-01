@@ -34,7 +34,18 @@ function exibir(req, res) {
       });
   }
 }
-
+function Recomendacao(req, res) {
+  var idQuestionario = req.body.idQuest;
+  formularioModel.Recomendacao(idQuestionario)
+    .then(resultado => {
+      // Se a consulta for bem-sucedida, envia o resultado como JSON
+      res.status(200).json(resultado); 
+    })
+    .catch(erro => {
+      // Se a consulta falhar, envia a mensagem de erro como JSON
+      res.status(500).json({ error: erro.message });
+    });
+}
 function cadastrar(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
   // var nome = req.body.nomeServer;
@@ -46,6 +57,12 @@ function cadastrar(req, res) {
   var valor_investido = req.body.investidoServer;
   var valor_reservado = req.body.reservadoServer;
   var situacao_inicial = req.body.situacao_iServer;
+  var valor_divertir = req.body.divertirServer;
+  var valor_gastar = req.body.gastarServer;
+  var valor_investir = req.body.investirServer;
+  var valor_reservar = req.body.reservarServer;
+  var situacao_final = req.body.situacao_fServer;
+
 
 
 
@@ -66,7 +83,12 @@ function cadastrar(req, res) {
         valor_investido,
         valor_renda,
         valor_reservado,
-        situacao_inicial
+        situacao_inicial,
+        valor_gastar ,
+        valor_divertir ,
+        valor_investir ,
+        valor_reservar ,
+        situacao_final 
        
       )
       .then(function (resultado) {
@@ -83,51 +105,51 @@ function cadastrar(req, res) {
   }
 }
 
-function cadastrar2(req, res) {
-  // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+// function cadastrar2(req, res) {
+//   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
  
-  // var id = req.body.idServer;
-  var valor_divertir = req.bod.divertirServer;
-  var valor_gastar = req.bod.gastarServer;
-  var valor_investir = req.bod.investirServer;
-  var valor_reservar = req.bod.reservarServer;
-  var situacao_final = req.bod.situacao_fServer;
+//   // var id = req.body.idServer;
+  // var valor_divertir = req.bod.divertirServer;
+  // var valor_gastar = req.bod.gastarServer;
+  // var valor_investir = req.bod.investirServer;
+  // var valor_reservar = req.bod.reservarServer;
+  // var situacao_final = req.bod.situacao_fServer;
 
 
-  // Faça as validações dos valores
-  if (
-    valor_gastar == undefined
-    //  ||
-    // valor_despesa_basica == undefined ||
-    // valor_divertimento == undefined
-  ) {
-    res.status(400).send("Seus dados estão undefined!");
-  } else {
-    // Passe os valores como parâmetro e vá para o arquivo formularioModel.js
-    formularioModel
-      .cadastrar(
-        valor_divertir,
-        valor_gastar,
-        valor_investir,
-        valor_reservar,
-        situacao_final
-      )
-      .then(function (resultado) {
-        res.json(resultado);
-      })
-      .catch(function (erro) {
-        console.log(erro);
-        console.log(
-          "\nHouve um erro ao realizar o cadastro! Erro: ",
-          erro.sqlMessage
-        );
-        res.status(500).json(erro.sqlMessage);
-      });
-  }
-}
+//   // Faça as validações dos valores
+//   if (
+//     valor_gastar == undefined
+//     //  ||
+//     // valor_despesa_basica == undefined ||
+//     // valor_divertimento == undefined
+//   ) {
+//     res.status(400).send("Seus dados estão undefined!");
+//   } else {
+//     // Passe os valores como parâmetro e vá para o arquivo formularioModel.js
+//     formularioModel
+//       .cadastrar(
+//         valor_divertir,
+//         valor_gastar,
+//         valor_investir,
+//         valor_reservar,
+//         situacao_final
+//       )
+//       .then(function (resultado) {
+//         res.json(resultado);
+//       })
+//       .catch(function (erro) {
+//         console.log(erro);
+//         console.log(
+//           "\nHouve um erro ao realizar o cadastro! Erro: ",
+//           erro.sqlMessage
+//         );
+//         res.status(500).json(erro.sqlMessage);
+//       });
+//   }
+// }
 
 module.exports = {
   exibir,
   cadastrar,
-  cadastrar2
+  Recomendacao
 };

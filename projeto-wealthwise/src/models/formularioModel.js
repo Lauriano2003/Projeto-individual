@@ -12,6 +12,21 @@ function autenticar(email, senha) {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
+function Recomendacao(idQuestionario) {
+  var instrucao = `
+  SELECT * FROM quest WHERE idQuest = ${idQuestionario}; 
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao)
+    .then(resultado => {
+      // Se a consulta for bem-sucedida, retorna o resultado
+      return resultado; 
+    })
+    .catch(erro => {
+      // Se a consulta falhar, retorna um erro em JSON
+      return { error: erro.message };
+    });
+}
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
 function cadastrar(
@@ -21,39 +36,47 @@ function cadastrar(
   valor_investido,
   valor_renda,
   valor_reservado,
-  situacao_inicial
-) {
-  console.log("ACESSEI O Formulario MODEL");
-
-  // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-  //  e na ordem de inserção dos dados.
-  var instrucaoSql = `INSERT INTO quest (fkUsuario,valor_despesa_basica,valor_divertimento,valor_investido,valor_renda,valor_reservado,situacao_inicial) VALUES ('${id}','${valor_despesa_basica}','${valor_divertimento}','${valor_investido}','${valor_renda}','${valor_reservado}','${situacao_inicial}');
-  `;
-
-  console.log("Executando a instrução SQL: \n" + instrucaoSql);
-  return database.executar(instrucaoSql);
-}
-
-function cadastrar2(
+  situacao_inicial,
   valor_divertir,
   valor_gastar,
   valor_investir,
   valor_reservar,
   situacao_final
+
 ) {
   console.log("ACESSEI O Formulario MODEL");
+
   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
   //  e na ordem de inserção dos dados.
-  var instrucaoSql = `INSERT INTO recomendacao (valor_divertir,valor_gastar,valor_investir,valor_reservar,situacao_final) Values(
-  '${valor_divertir}','${valor_gastar}','${valor_investir}','${valor_reservar}','${situacao_final}');
+  var instrucaoSql = `INSERT INTO quest (fkUsuario,valor_despesa_basica,valor_divertimento,valor_investido,valor_renda,valor_reservado,situacao_inicial, valor_divertir,
+valor_gastar,valor_investir,valor_reservar,situacao_final) VALUES ('${id}','${valor_despesa_basica}','${valor_divertimento}','${valor_investido}','${valor_renda}','${valor_reservado}','${situacao_inicial}', '${valor_divertir}','${valor_gastar}','${valor_investir}','${valor_reservar}','${situacao_final}');
   `;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
 
+// function cadastrar2(
+//   valor_divertir,
+//   valor_gastar,
+//   valor_investir,
+//   valor_reservar,
+//   situacao_final
+// ) {
+//   console.log("ACESSEI O Formulario MODEL");
+//   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+//   //  e na ordem de inserção dos dados.
+//   var instrucaoSql = `INSERT INTO recomendacao (valor_divertir,valor_gastar,valor_investir,valor_reservar,situacao_final) Values(
+//   '${valor_divertir}','${valor_gastar}','${valor_investir}','${valor_reservar}','${situacao_final}');
+//   `;
+
+//   console.log("Executando a instrução SQL: \n" + instrucaoSql);
+//   return database.executar(instrucaoSql);
+// }
+
 module.exports = {
   autenticar,
-  cadastrar,
-  cadastrar2
+  Recomendacao,
+  cadastrar
+  // cadastrar2
 };

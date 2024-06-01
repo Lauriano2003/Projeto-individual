@@ -11,8 +11,9 @@ router.post("/cadastrar", function (req, res) {
   formularioController.cadastrar(req, res);
 })
 
-router.post("/cadastrar2", function (req, res) {
-  formularioController.cadastrar2(req, res);
-})
+router.post("/Recomendacao", function (req, res) {
+  // função a ser chamada quando acessar /formulario/Recomendacao
+  formularioController.Recomendacao(req, res);
+});
 
 module.exports = router;

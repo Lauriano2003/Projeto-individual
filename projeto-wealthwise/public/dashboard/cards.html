@@ -20,7 +20,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), exibirAquarios(),  atualizacaoPeriodica()">
+<body onload="validarSessao(), Recomendar() ">
 
     <div class="janela">
 
@@ -86,19 +86,19 @@
             </div>
             <h1 class="titulo_Contas">Contas</h1>
             <div class="cards" id="cardAquarios">
-                <div class="cards_Contas"><h1><b>Geral</b><p class="text_cards" id="cardsText">Saldo: R$--</p>
-                <p class="text_cards" id="cardsText">Total Investido: R$--</p>
-                <p class="text_cards" id="cardsText">Total Reservado: R$--</p></h1>
+                <div class="cards_Contas"><h1><b>Geral</b><p class="text_cards" id="cardsText">Saldo: R$ <span id="Saldo"></span> </p>
+                <p class="text_cards" id="cardsText">Total Investido: R$<span id="Total_investimento"></span></p>
+                <p class="text_cards" id="cardsText">Total Reservado: R$<span id="Total_reservado"></span></p></h1>
             </div>
             <div class="cards" id="cardAquarios">
-                <div class="cards_Contas"><h1><b>Valor Divertimento</b><p class="text_cards" id="cardsText">R$--</p></h1>
+                <div class="cards_Contas"><h1><b>Valor Divertimento</b><p class="text_cards" id="cardsText">R$<span id="Divertimento"></span></p></h1>
                 </div>            
-                <div class="cards_Contas"><h1><b>Valor Despesas Basicas</b><p class="text_cards" id="cardsText">R$--</p></h1></div>
+                <div class="cards_Contas"><h1><b>Valor Despesas Basicas</b><p class="text_cards" id="cardsText">R$<span id="Despesas"></span></p></h1></div>
             </div>
-            Receita Total
+            <span style="font-size: 40px;"><b>R$<span id="Receita"></span></b></span>
             <div class="cards" id="cardAquarios">
-                <div class="cards_Contas"><h1><b>Valor Investimentos mensais</b><p class="text_cards" id="cardsText">R$--</p></h1></div>            
-                <div class="cards_Contas"><h1><b>Valor Reservado mensal</b><p class="text_cards" id="cardsText">R$--</p></h1></div>
+                <div class="cards_Contas"><h1><b>Valor Investimentos mensais</b><p class="text_cards" id="cardsText">R$<span id="Investimentos"></span></p></h1></div>            
+                <div class="cards_Contas"><h1><b>Valor Reservado mensal</b><p class="text_cards" id="cardsText">R$ <span id="Reservado"></span></p></h1></div>
             </div>
             </div>
            
@@ -108,47 +108,88 @@
 
 </body>
 
-<script>
+<!-- <script>
 
-    // function exibirAquarios() {
-    //     JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
-    //         document.getElementById("cardAquarios").innerHTML += `
-    //                 <div class="card-aquario">
-    //                     <div class="title-aquario">
-    //                         <h1>${item.descricao}</h1>
-    //                     </div>
-    //                     <div class="desc-aquario">
-    //                     <div class="temperatura">
-    //                         <p id="temp_aquario_${item.id}">-°C</p>
-    //                     </div>
-    //                     <div class="cor-alerta" id="card_${item.id}"></div>
-    //                 </div>
-    //                 </div>
-    //                 `
-    //     });
-    // }
+    function exibirAquarios() {
+        JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
+            document.getElementById("cardAquarios").innerHTML += `
+                    <div class="card-aquario">
+                        <div class="title-aquario">
+                            <h1>${item.descricao}</h1>
+                        </div>
+                        <div class="desc-aquario">
+                        <div class="temperatura">
+                            <p id="temp_aquario_${item.id}">-°C</p>
+                        </div>
+                        <div class="cor-alerta" id="card_${item.id}"></div>
+                    </div>
+                    </div>
+                    `
+        });
+    }
 
 
-</script>
+</script> -->
 
 </html>
 
 <script>
-    async function fetchKPIs() {
-        try {
-            const response = await fetch('/api/kpis');
-            const data = await response.json();
-
-            document.getElementById('saldo').textContent = `Saldo: R$${data.saldo}`;
-            document.getElementById('totalInvestido').textContent = `Total Investido: R$${data.totalInvestido}`;
-            document.getElementById('totalReservado').textContent = `Total Reservado: R$${data.totalReservado}`;
-            // Atualize os outros KPIs aqui
-        } catch (error) {
-            console.error('Erro ao buscar KPIs:', error);
-        }
+    function Recomendar(){
+        var idQuest = sessionStorage.getItem("ID_USUARIO");
+        fetch(`/formulario/Recomendacao`, { 
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ idQuest: idQuest })
+  }) 
+  .then(response => {
+    if (!response.ok) {
+      return response.json().then(error => { 
+        throw new Error(error.message); 
+      });
     }
+    return response.json();
+  })
+  .then(formulario => { 
+      // Aqui a resposta está pronta
+      // Agora você pode acessar os dados do formulário
+        let array = [];
+    formulario.forEach(formulario =>{
 
-    function exibirKPIs() {
-        fetchKPIs();
-    }
+        array.push(formulario.valor_gastar);
+    
+        console.log(array[0])
+        alert("cheguei no then formulario")
+        console.log(formulario);
+        console.log(formulario.situacao_final);
+        console.log(formulario.valor_divertir);
+        console.log(formulario.fkUsuario);
+        Divertimento.innerHTML = formulario.valor_divertir;
+        Reservado.innerHTML = formulario.valor_reservado;
+        Receita.innerHTML = formulario.valor_renda
+    // Outros campos
+    // ...
+})
+  })
+  .catch(error => console.error('Erro ao buscar os dados das contas:', error));
+
+// Faz a requisição para a rota /listar
+// var idQuest = sessionStorage.getItem("ID_USUARIO")
+// fetch(`/formulario/Recomendacao/${idQuest}`, { method: 'POST' }) 
+// .then(response => response.json())
+// .then(pontuacoes => {
+// Manipula o JSON com as pontuações
+// const pontuacoesList = document.getElementById('pontuacoes-list');
+// pontuacoes.forEach(pontuacao => {
+//   const listItem = document.createElement('li');
+//   console.log(pontuacao)
+//   resultado.innerHTML += `Usuário ${pontuacao.fkUsuario}: ${pontuacao.pontuacao} pontos <br>`;
+  
+// });
+// Reservado.innerHTML = pontuacoes.valor_reservar
+// })
+// .catch(error => console.error('Erro ao buscar os dados das contas:', error));
+
+}
 </script>
