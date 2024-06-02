@@ -57,8 +57,8 @@ function cadastrar(req, res) {
   var valor_investido = req.body.investidoServer;
   var valor_reservado = req.body.reservadoServer;
   var situacao_inicial = req.body.situacao_iServer;
-  var valor_divertir = req.body.divertirServer;
   var valor_gastar = req.body.gastarServer;
+  var valor_divertir = req.body.divertirServer;
   var valor_investir = req.body.investirServer;
   var valor_reservar = req.body.reservarServer;
   var situacao_final = req.body.situacao_fServer;

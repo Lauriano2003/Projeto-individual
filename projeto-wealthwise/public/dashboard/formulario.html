@@ -27,7 +27,7 @@
 
             <li>Possui Reserva de Emergência? <br>  <select name="reserva_emergencia" id="reserva_emergencia"><option value="">Selecione uma das Opções</option></li><option value="sim">Sim</option> <option value="nao">Não</option></select> </li><br>
             
-            <li>Caso tenha respondido Sim na ultima pergunta, qual o valor que tem de reserva? <br> <input type="number" name="valor_reserva" id="valor_reserva"></li><br>
+            <li>Caso tenha respondido Sim na ultima pergunta, qual o valor que quarda por mês? <br> <input type="number" name="valor_reserva" id="valor_reserva"></li><br>
 
             <li>Qual seu foco ? <br> <select name="objetivo" id="objetivo"><option value="">Selecione uma das Opções</option></li><option value="dividas">Pagamento de dividas</option> <option value="investimento">Investir/Poupar</option></li><option value="divertimento">Atividades de Diversão</option></li></select> <br>
 
@@ -39,6 +39,7 @@
 </body>
 </html>
 <script>
+  let list = []
     function Redirecionar_à_Dash() {
         
         const renda_mensal = renda.value
@@ -57,8 +58,18 @@
         let valor_reservar = 0
         let valor_gastar = 0 
         let valor_divertir = 0
-        
 
+        list.push(renda_mensal,gasto_mensal,gasto_divertimento,investidor,investidor_constante,valor_investido,reserva,valor_resevado,foco)
+
+        let continuar = true
+        for(contador_pergunta = 0;contador_pergunta<list.length;contador_pergunta+=1){
+          if(list[contador_pergunta]==0){
+            continuar = false
+          }
+        }
+
+        if(continuar==false){alert(`Por favor, preencha todos os campos`)}
+        else{
         if(foco=='dividas'){
             valor_investir = renda_mensal*0.1
             valor_reservar = renda_mensal*0.1
@@ -85,7 +96,7 @@
         else if (valor_investir != valor_investido || valor_reservar!=valor_resevado||valor_divertir!= gasto_divertimento|| valor_gastar!=gasto_mensal ){
             alert('Você está com o controle financeiro frágil, reorganize sua divisão da receita')
         }
-        else{
+        else if (valor_investir == valor_investido || valor_reservar==valor_resevado||valor_divertir== gasto_divertimento|| valor_gastar==gasto_mensal ){
             alert('Parabens! Você está com um bom controle financeiro, continue assim.')
         }
 
@@ -152,6 +163,7 @@
 
     
     }
+  }
     // function fet2(valor_gastar,valor_divertir,valor_investir,valor_reservar,valor_situacao_F){
 
     // fetch("/formulario/cadastrar2/", {

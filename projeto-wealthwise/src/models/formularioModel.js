@@ -37,8 +37,8 @@ function cadastrar(
   valor_renda,
   valor_reservado,
   situacao_inicial,
-  valor_divertir,
   valor_gastar,
+  valor_divertir,
   valor_investir,
   valor_reservar,
   situacao_final
@@ -48,8 +48,7 @@ function cadastrar(
 
   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
   //  e na ordem de inserção dos dados.
-  var instrucaoSql = `INSERT INTO quest (fkUsuario,valor_despesa_basica,valor_divertimento,valor_investido,valor_renda,valor_reservado,situacao_inicial, valor_divertir,
-valor_gastar,valor_investir,valor_reservar,situacao_final) VALUES ('${id}','${valor_despesa_basica}','${valor_divertimento}','${valor_investido}','${valor_renda}','${valor_reservado}','${situacao_inicial}', '${valor_divertir}','${valor_gastar}','${valor_investir}','${valor_reservar}','${situacao_final}');
+  var instrucaoSql = `INSERT INTO quest (fkUsuario,valor_despesa_basica,valor_divertimento,valor_investido,valor_renda,valor_reservado,situacao_inicial,valor_gastar,valor_divertir,valor_investir,valor_reservar,situacao_final) VALUES ('${id}','${valor_despesa_basica}','${valor_divertimento}','${valor_investido}','${valor_renda}','${valor_reservado}','${situacao_inicial}', '${valor_gastar}','${valor_divertir}','${valor_investir}','${valor_reservar}','${situacao_final}');
   `;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);

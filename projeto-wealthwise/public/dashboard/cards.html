@@ -44,7 +44,7 @@
 
             <div class="btn-nav-white">
                 <a href="./mural.html">
-                    <h3>Forum de investimentos</h3>
+                    <h3>Forum de Finanças</h3>
                 </a>
             </div>
 
@@ -86,19 +86,26 @@
             </div>
             <h1 class="titulo_Contas">Contas</h1>
             <div class="cards" id="cardAquarios">
-                <div class="cards_Contas"><h1><b>Geral</b><p class="text_cards" id="cardsText">Saldo: R$ <span id="Saldo"></span> </p>
-                <p class="text_cards" id="cardsText">Total Investido: R$<span id="Total_investimento"></span></p>
-                <p class="text_cards" id="cardsText">Total Reservado: R$<span id="Total_reservado"></span></p></h1>
+                <div class="cards_Contas" ><h1><b>Receita Total</b><p class="text_cards" id="cardsText"> R$ <span id="Receita"></span> </p>
             </div>
             <div class="cards" id="cardAquarios">
-                <div class="cards_Contas"><h1><b>Valor Divertimento</b><p class="text_cards" id="cardsText">R$<span id="Divertimento"></span></p></h1>
+                <div class="cards_Contas"><h1><b>Gasto Divertimento</b><p class="text_cards" id="cardsText">Atual: R$<span id="Divertimento"></span></p>
+                </h1>
+                <h1><p class="text_cards" id="cardsText" style="margin-top: -20% ;color: rgb(0, 255, 0);">Recomendado: R$<span id="Divertimento_Recomendado"></span></p></h1>
                 </div>            
-                <div class="cards_Contas"><h1><b>Valor Despesas Basicas</b><p class="text_cards" id="cardsText">R$<span id="Despesas"></span></p></h1></div>
+                <div class="cards_Contas"><h1><b>Gasto Despesas Basicas</b><p class="text_cards" id="cardsText">Atual: R$<span id="Despesas"></span></p></h1>
+                <h1><p class="text_cards" id="cardsText" style="margin-top: -20% ;color: rgb(0, 255, 0);">Recomendado: R$<span id="Despesa_Recomendada"></span></p></h1>
             </div>
-            <span style="font-size: 40px;"><b>R$<span id="Receita"></span></b></span>
+            </div>
+            <span style="font-size: 30px; text-align: center;margin-bottom: -5%;"><b> Valor desperdiçado: R$<span id="Saldo"></span> <p style="color: rgb(0, 255, 0);">Recomendado: R$<span id="desperdicio_recomendado"></span></p></b></span>
+            
             <div class="cards" id="cardAquarios">
-                <div class="cards_Contas"><h1><b>Valor Investimentos mensais</b><p class="text_cards" id="cardsText">R$<span id="Investimentos"></span></p></h1></div>            
-                <div class="cards_Contas"><h1><b>Valor Reservado mensal</b><p class="text_cards" id="cardsText">R$ <span id="Reservado"></span></p></h1></div>
+                <div class="cards_Contas"><h1><b>Valor Investimentos mensais</b><p class="text_cards" id="cardsText">Atual: R$<span id="Investimentos"></span></p></h1>
+                <h1><p class="text_cards" id="cardsText" style="margin-top: -20% ;color: rgb(0, 255, 0);">Recomendado: R$<span id="Investimentos_Recomendado"></span></p></h1>
+                </div>            
+                <div class="cards_Contas"><h1><b>Valor Reservado mensal</b><p class="text_cards" id="cardsText">Atual: R$ <span id="Reservado"></span></p></h1>
+                <h1><p class="text_cards" id="cardsText" style="margin-top: -20% ;color: rgb(0, 255, 0);">Recomendado: R$<span id="Reserva_Recomendada"></span></p></h1>
+                </div>
             </div>
             </div>
            
@@ -154,23 +161,27 @@
   .then(formulario => { 
       // Aqui a resposta está pronta
       // Agora você pode acessar os dados do formulário
-        let array = [];
+      
     formulario.forEach(formulario =>{
 
-        array.push(formulario.valor_gastar);
-    
-        console.log(array[0])
-        alert("cheguei no then formulario")
-        console.log(formulario);
-        console.log(formulario.situacao_final);
-        console.log(formulario.valor_divertir);
-        console.log(formulario.fkUsuario);
-        Divertimento.innerHTML = formulario.valor_divertir;
+        Divertimento.innerHTML = formulario.valor_divertimento;
         Reservado.innerHTML = formulario.valor_reservado;
-        Receita.innerHTML = formulario.valor_renda
+        Receita.innerHTML = formulario.valor_renda;
+        Despesas.innerHTML = formulario.valor_despesa_basica;
+        Investimentos.innerHTML = formulario.valor_investido;
+        Saldo.innerHTML = formulario.situacao_inicial;
+        
+        Divertimento_Recomendado.innerHTML = formulario.valor_divertir;
+        Reserva_Recomendada.innerHTML = formulario.valor_reservar;
+        Despesa_Recomendada.innerHTML = formulario.valor_gastar;
+        Investimentos_Recomendado.innerHTML = formulario.valor_investir;
+        desperdicio_recomendado.innerHTML = formulario.situacao_final;
+        
+
     // Outros campos
     // ...
 })
+   
   })
   .catch(error => console.error('Erro ao buscar os dados das contas:', error));
 

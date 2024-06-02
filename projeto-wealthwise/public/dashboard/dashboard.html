@@ -52,7 +52,7 @@
 
             <div class="btn-nav-white">
                 <a href="./mural.html">
-                    <h3>Forum de Investimentos</h3>
+                    <h3>Forum de Finanças</h3>
                 </a>
             </div>
 
@@ -130,22 +130,28 @@ const ctx = document.getElementById('pontuacaoChart').getContext('2d');
 new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Renda', 'Despesas Básicas', 'Diversão', 'Investimento', 'Reservado'],
+        labels: ['Despesas Básicas', 'Recomendação Despesas', 'Gasto Diversão', 'Recomendação Diversão', 'Valor Investimento', 'Recomendação Investimendo','Valor Reserva','Recomendação Reserva'],
         datasets: [{
             label: 'valores',
             data: [
-            formulario.valor_renda,
           formulario.valor_despesa_basica,
+          formulario.valor_gastar,
           formulario.valor_divertimento,
+          formulario.valor_divertir,
           formulario.valor_investido,
-          formulario.valor_reservado
+          formulario.valor_investir,
+          formulario.valor_reservado,
+          formulario.valor_reservar
         ],
             backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)'
+          'white',
+          'rgb(0, 255, 0)',
+          'white',
+          'rgb(0, 255, 0)',
+          'white',
+          'rgb(0, 255, 0)',
+          'white',
+          'rgb(0, 255, 0)'
         ],
             borderColor: 'rgba(255, 0, 0, 1)',
             borderWidth: 1
