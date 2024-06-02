@@ -14,24 +14,39 @@
         <div class="perguntas_questionario">
         <ol>
             <li>Qual a sua renda mensal média? <br> <input type="text" name="renda" id="renda"></li><br>
-
             <li>Qual o valor médio de suas Despesas Basicas mensais? <br> <input type="number" name="gasto" id="gasto"></li><br>
-
             <li>Qual o valor médio do seu gasto mensal de Desejos/Divertimento? <br> <input type="number" name="divertimento" id="divertimento"></li><br>
-
-            <li>Já é um investidor no mercado financeiro? <br> <select name="investidor_financeiro" id="investidor_financeiro"><option value="">Selecione uma das Opções</option></li><option value="sim">Sim</option> <option value="nao">Não</option></select> </li><br>
-
-            <li>Investe um valor regular todo mês ? <br> <select name="investidor_financeiro" id="investidor_regular"><option value="">Selecione uma das Opções</option></li><option value="sim">Sim</option> <option value="nao">Não</option></li></select> <br>
-
-            <br><li>Caso tenha respondido Sim nas duas ultimas perguntas, qual o valor que investe por mês? <br> <input type="number" name="valorinvestido" id="valorinvestido"></li><br>
-
-            <li>Possui Reserva de Emergência? <br>  <select name="reserva_emergencia" id="reserva_emergencia"><option value="">Selecione uma das Opções</option></li><option value="sim">Sim</option> <option value="nao">Não</option></select> </li><br>
-            
-            <li>Caso tenha respondido Sim na ultima pergunta, qual o valor que quarda por mês? <br> <input type="number" name="valor_reserva" id="valor_reserva"></li><br>
-
-            <li>Qual seu foco ? <br> <select name="objetivo" id="objetivo"><option value="">Selecione uma das Opções</option></li><option value="dividas">Pagamento de dividas</option> <option value="investimento">Investir/Poupar</option></li><option value="divertimento">Atividades de Diversão</option></li></select> <br>
-
-
+            <li>Já é um investidor no mercado financeiro? <br> 
+                <select name="investidor_financeiro" id="investidor_financeiro">
+                    <option value="">Selecione uma das Opções</option>
+                    <option value="sim">Sim</option> 
+                    <option value="nao">Não</option>
+                </select> 
+            </li><br> <!-- Alteração: fechamento correto das tags select e li -->
+            <li>Investe um valor regular todo mês? <br> 
+                <select name="investidor_regular" id="investidor_regular">
+                    <option value="">Selecione uma das Opções</option>
+                    <option value="sim">Sim</option> 
+                    <option value="nao">Não</option>
+                </select> 
+            </li><br> <!-- Alteração: fechamento correto das tags select e li -->
+            <li>Caso tenha respondido Sim nas duas ultimas perguntas, qual o valor que investe por mês? <br> <input type="number" name="valorinvestido" id="valorinvestido"></li><br>
+            <li>Possui Reserva de Emergência? <br> 
+                <select name="reserva_emergencia" id="reserva_emergencia">
+                    <option value="">Selecione uma das Opções</option>
+                    <option value="sim">Sim</option> 
+                    <option value="nao">Não</option>
+                </select> 
+            </li><br> <!-- Alteração: fechamento correto das tags select e li -->
+            <li>Caso tenha respondido Sim na ultima pergunta, qual o valor que guarda por mês? <br> <input type="number" name="valor_reserva" id="valor_reserva"></li><br>
+            <li>Qual seu foco? <br> 
+                <select name="objetivo" id="objetivo">
+                    <option value="">Selecione uma das Opções</option>
+                    <option value="dividas">Pagamento de dívidas</option> 
+                    <option value="investimento">Investir/Poupar</option>
+                    <option value="divertimento">Atividades de Diversão</option>
+                </select> 
+            </li><br> <!-- Alteração: fechamento correto das tags select e li -->
         </ol>
         <div class="botao_formulario"><button onclick="Redirecionar_à_Dash()">Enviar</button></div>
     </div>
@@ -39,92 +54,84 @@
 </body>
 </html>
 <script>
-  let list = []
-    function Redirecionar_à_Dash() {
-        
-        const renda_mensal = renda.value
-        const gasto_mensal = gasto.value
-        const gasto_divertimento = divertimento.value
-        const investidor = investidor_financeiro.value
-        const investidor_constante = investidor_regular.value
-        const valor_investido = valorinvestido.value
-        const reserva = reserva_emergencia.value  
-        const valor_resevado = valor_reserva.value
-        const foco = objetivo.value
-        const valor_situacao_I = renda_mensal-gasto_divertimento-gasto_mensal-valor_investido-valor_resevado
+  function Redirecionar_à_Dash() {
+    const renda_mensal = renda.value;
+    const gasto_mensal = gasto.value;
+    const gasto_divertimento = divertimento.value;
+    const investidor = investidor_financeiro.value;
+    const investidor_constante = investidor_regular.value; 
+    const valor_investido = valorinvestido.value;
+    const reserva = reserva_emergencia.value;
+    const valor_resevado = valor_reserva.value;
+    const foco = objetivo.value;
 
-        let divisao_renda = 0
-        let valor_investir = 0
-        let valor_reservar = 0
-        let valor_gastar = 0 
-        let valor_divertir = 0
+    let list = [
+      renda_mensal,
+      gasto_mensal,
+      gasto_divertimento,
+      investidor,
+      investidor_constante,
+      valor_investido,
+      reserva,
+      valor_resevado,
+      foco
+    ];
 
-        list.push(renda_mensal,gasto_mensal,gasto_divertimento,investidor,investidor_constante,valor_investido,reserva,valor_resevado,foco)
+    let continuar = true;
+    for (let item of list) {
+      if (item === "") { 
+        continuar = false;
+        break;
+      }
+    }
 
-        let continuar = true
-        for(contador_pergunta = 0;contador_pergunta<list.length;contador_pergunta+=1){
-          if(list[contador_pergunta]==0){
-            continuar = false
-          }
-        }
+    if (!continuar) {
+      alert('Por favor, preencha todos os campos');
+      return;
+    }
 
-        if(continuar==false){alert(`Por favor, preencha todos os campos`)}
-        else{
-        if(foco=='dividas'){
-            valor_investir = renda_mensal*0.1
-            valor_reservar = renda_mensal*0.1
-            valor_gastar = renda_mensal*0.6
-            valor_divertir = renda_mensal*0.2
-        }
-        else if (foco=='investimento'){
-            valor_investir = renda_mensal*0.15
-            valor_reservar = renda_mensal*0.15
-            valor_gastar = renda_mensal*0.5
-            valor_divertir = renda_mensal*0.2
-        }
-        else if(foco=='divertimento'){
-            valor_investir = renda_mensal*0.1
-            valor_reservar = renda_mensal*0.1
-            valor_gastar = renda_mensal*0.5
-            valor_divertir = renda_mensal*0.3
-        }
-        let valor_situacao_F = renda_mensal - valor_investir - valor_reservar - valor_gastar - valor_divertir
+    const valor_situacao_I = renda_mensal - gasto_divertimento - gasto_mensal - valor_investido - valor_resevado;
 
-        if(valor_situacao_I<0){
-            alert('Você está gastando mais do que ganha, por favor, verifique seus gastos')
-        }
-        else if (valor_investir != valor_investido || valor_reservar!=valor_resevado||valor_divertir!= gasto_divertimento|| valor_gastar!=gasto_mensal ){
-            alert('Você está com o controle financeiro frágil, reorganize sua divisão da receita')
-        }
-        else if (valor_investir == valor_investido || valor_reservar==valor_resevado||valor_divertir== gasto_divertimento|| valor_gastar==gasto_mensal ){
-            alert('Parabens! Você está com um bom controle financeiro, continue assim.')
-        }
+    let valor_investir = 0;
+    let valor_reservar = 0;
+    let valor_gastar = 0;
+    let valor_divertir = 0;
 
+    if (foco === 'dividas') {
+      valor_investir = renda_mensal * 0.1;
+      valor_reservar = renda_mensal * 0.1;
+      valor_gastar = renda_mensal * 0.6;
+      valor_divertir = renda_mensal * 0.2;
+    } else if (foco === 'investimento') {
+      valor_investir = renda_mensal * 0.15;
+      valor_reservar = renda_mensal * 0.15;
+      valor_gastar = renda_mensal * 0.5;
+      valor_divertir = renda_mensal * 0.2;
+    } else if (foco === 'divertimento') {
+      valor_investir = renda_mensal * 0.1;
+      valor_reservar = renda_mensal * 0.1;
+      valor_gastar = renda_mensal * 0.5;
+      valor_divertir = renda_mensal * 0.3;
+    }
 
-        // var id = req.body.idServer;
-        // var valor_renda = req.body.rendaServer;
-        // var valor_despesa_basica = req.body.despesaServer;
-        // var valor_divertimento = req.body.divertimentoServer;
-        // // var valor_investido = req.body.investidoServer;
-        // var valor_reservado = req.body.reservadoServer;
-        // var situacao_inicial = req.body.situacao_iServer;
-        // // var valor_gastar = req.bod.gastarServer;
-        // // var valor_divertir = req.bod.divertirServer;
-        // // var valor_investir = req.bod.investirServer;
-        // // var valor_reservar = req.bod.reservarServer;
-        // var situacao_final = req.bod.situacao_fServer;
-        
-        
-        idUsuario = sessionStorage.ID_USUARIO
+    let valor_situacao_F = renda_mensal - valor_investir - valor_reservar - valor_gastar - valor_divertir;
 
-        fetch("/formulario/cadastrar/", {
+    if (valor_situacao_I < 0) {
+      alert('Você está gastando mais do que ganha, por favor, verifique seus gastos');
+    } else if (valor_investir != valor_investido || valor_reservar != valor_resevado || valor_divertir != gasto_divertimento || valor_gastar != gasto_mensal) {
+      alert('Você está com o controle financeiro frágil, reorganize sua divisão da receita');
+    } else {
+      alert('Parabéns! Você está com um bom controle financeiro, continue assim.');
+    }
+
+    idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch("/formulario/cadastrar/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
         idServer: idUsuario,
         rendaServer: renda_mensal,
         despesaServer: gasto_mensal,
@@ -133,7 +140,7 @@
         reservadoServer: valor_resevado,
         situacao_iServer: valor_situacao_I,
         divertirServer: valor_divertir,
-        gastarServer:  valor_gastar,
+        gastarServer: valor_gastar,
         investirServer: valor_investir,
         reservarServer: valor_reservar,
         situacao_fServer: valor_situacao_F
@@ -143,65 +150,17 @@
         console.log("resposta: ", resultado);
 
         if (resultado.ok) {
-            setTimeout(() => {
-                  window.location = "cards.html";
-          }, "2000");
-        
-        // fet2();
-         
-          
+          setTimeout(() => {
+            window.location = "cards.html";
+          }, 2000);
         } else {
-          throw "Houve um erro ao tentar realizar o envio do formulario";
+          throw "Houve um erro ao tentar realizar o envio do formulário";
         }
       })
       .catch(function (resultado) {
         console.log(`#ERRO: ${resultado}`);
-       
       });
 
     return false;
-
-    
-    }
   }
-    // function fet2(valor_gastar,valor_divertir,valor_investir,valor_reservar,valor_situacao_F){
-
-    // fetch("/formulario/cadastrar2/", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     // crie um atributo que recebe o valor recuperado aqui
-    //     // Agora vá para o arquivo routes/usuario.js
-        
-        // divertirServer: valor_divertir,
-        // gastarServer:  valor_gastar,
-        // investirServer: valor_investir,
-        // reservarServer: valor_reservar,
-        // situacao_fServer: valor_situacao_F
-        
-    //   }),
-    // })
-    //   .then(function (resultado) {
-    //     console.log("resposta: ", resultado);
-
-    //     if (resultado.ok) {
-    //       setTimeout(() => {
-    //         window.location = "cards.html";
-    //       }, "2000");
-         
-          
-    //     } else {
-    //       throw "Houve um erro ao tentar realizar o envio do formulario";
-    //     }
-    //   })
-    //   .catch(function (resultado) {
-    //     console.log(`#ERRO: ${resultado}`);
-       
-    //   });
-
-    // return false;
-  
-    // }
 </script>
