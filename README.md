@@ -1,3 +1,8 @@
+Trello:
+https://trello.com/invite/b/2Pt3tI2L/ATTI0fcbd14c89fd0517a3cc344919e91a509DEF229B/wealthwise
+
+
+
 Gestão Financeira Pessoal - Wealthwise
 Sobre o Projeto
 Este projeto tem como objetivo desenvolver um site interativo para auxiliar os usuários na gestão de suas finanças pessoais. Com o crescimento da complexidade financeira e a falta de educação financeira adequada, muitas pessoas enfrentam desafios para controlar gastos, economizar e investir de forma eficiente. Nosso site pretende oferecer uma solução prática e acessível, proporcionando estratégias financeiras comprovadas, ferramentas interativas e uma comunidade de apoio mútuo.
