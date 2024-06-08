@@ -72,14 +72,14 @@
                     </div> -->
                     <div class="item-regua ideal">
                         <p>Positiva</p>
-                        <p>Atual>=Inicial</p>
+                        <p>Atual==Inicial</p>
                     </div>
                     <!-- <div class="item-regua alerta-quente">
                         <p>Estavel</p>
                         <p>Atual=Inicial</p>
                     </div> -->
                     <div class="item-regua perigo-quente">
-                        <p>Negativo</p>
+                        <p>Negativa</p>
                         <p>Inicial>Atual</p>
                     </div>
                 </div>
@@ -89,21 +89,21 @@
                 <div class="cards_Contas" ><h1><b>Receita Total</b><p class="text_cards" id="cardsText"> R$ <span id="Receita"></span> </p>
             </div>
             <div class="cards" id="cardAquarios">
-                <div class="cards_Contas"><h1><b>Gasto Divertimento</b><p class="text_cards" id="cardsText">Atual: R$<span id="Divertimento"></span></p>
+                <div class="cards_Contas"><h1><b>Gasto Divertimento</b><p class="text_cards" id="cardsText"style="color: red;" >Atual: R$<span id="Divertimento"></span></p>
                 </h1>
                 <h1><p class="text_cards" id="cardsText" style="margin-top: -20% ;color: rgb(0, 255, 0);">Recomendado: R$<span id="Divertimento_Recomendado"></span></p></h1>
                 </div>            
-                <div class="cards_Contas"><h1><b>Gasto Despesas Basicas</b><p class="text_cards" id="cardsText">Atual: R$<span id="Despesas"></span></p></h1>
+                <div class="cards_Contas"><h1><b>Gasto Despesas Basicas</b><p class="text_cards" id="cardsText" style="color: red;">Atual: R$<span id="Despesas"></span></p></h1>
                 <h1><p class="text_cards" id="cardsText" style="margin-top: -20% ;color: rgb(0, 255, 0);">Recomendado: R$<span id="Despesa_Recomendada"></span></p></h1>
             </div>
             </div>
-            <span style="font-size: 30px; text-align: center;margin-bottom: -5%;"><b> Valor desperdiçado: R$<span id="Saldo"></span> <p style="color: rgb(0, 255, 0);">Recomendado: R$<span id="desperdicio_recomendado"></span></p></b></span>
+            <span style="font-size: 30px; text-align: center;margin-bottom: -5%; color: red;"><b> Saldo: R$<span id="Saldo"></span> <p style="color: rgb(0, 255, 0);">Recomendado: R$<span id="desperdicio_recomendado"></span></p></b></span>
             
             <div class="cards" id="cardAquarios">
-                <div class="cards_Contas"><h1><b>Valor Investimentos mensais</b><p class="text_cards" id="cardsText">Atual: R$<span id="Investimentos"></span></p></h1>
+                <div class="cards_Contas"><h1><b>Valor Investimentos mensais</b><p class="text_cards" id="cardsText" style="color: red;">Atual: R$<span id="Investimentos"></span></p></h1>
                 <h1><p class="text_cards" id="cardsText" style="margin-top: -20% ;color: rgb(0, 255, 0);">Recomendado: R$<span id="Investimentos_Recomendado"></span></p></h1>
                 </div>            
-                <div class="cards_Contas"><h1><b>Valor Reservado mensal</b><p class="text_cards" id="cardsText">Atual: R$ <span id="Reservado"></span></p></h1>
+                <div class="cards_Contas"><h1><b>Valor Reservado mensal</b><p class="text_cards" id="cardsText" style="color: red;">Atual: R$ <span id="Reservado"></span></p></h1>
                 <h1><p class="text_cards" id="cardsText" style="margin-top: -20% ;color: rgb(0, 255, 0);">Recomendado: R$<span id="Reserva_Recomendada"></span></p></h1>
                 </div>
             </div>
@@ -178,12 +178,12 @@
         desperdicio_recomendado.innerHTML = formulario.situacao_final;
         
 
-    // Outros campos
-    // ...
 })
    
   })
   .catch(error => console.error('Erro ao buscar os dados das contas:', error));
+
+  
 
 // Faz a requisição para a rota /listar
 // var idQuest = sessionStorage.getItem("ID_USUARIO")
